@@ -1,0 +1,17 @@
+[
+  {
+    "id": "doc-1",
+    "title": "Password Reset",
+    "content": "Users can reset their password from the login page using the Forgot Password link."
+  },
+  {
+    "id": "doc-2",
+    "title": "Order Tracking",
+    "content": "Users can track an order from My Orders using the tracking number."
+  },
+  {
+    "id": "doc-3",
+    "title": "Refund Policy",
+    "content": "Eligible refunds are processed to the original payment method according to the company's refund policy."
+  }
+]

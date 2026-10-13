@@ -1,0 +1,91 @@
+openapi: 3.0.0
+
+info:
+  title: UniPick
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3001/
+    description: Local server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+
+paths:
+  /register:
+    post:
+      tags:
+        - AUTHENTICATION
+      description: Register a new user
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mobile:
+                  type: string
+                  example: "1234567890"
+                email:
+                  type: string
+                  format: email
+                  example: "jason@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "Pass@123"
+                name:
+                  type: string
+                  example: "Jack"
+              required:
+                - mobile
+                - password
+                - name
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request Error
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+
+  /login:
+    post:
+      tags:
+        - AUTHENTICATION
+      description: Login with mobile number and password
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "1234567890"
+                password:
+                  type: string
+                  format: password
+                  example: "Pass@123"
+              required:
+                - username
+                - password
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad Request Error
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
